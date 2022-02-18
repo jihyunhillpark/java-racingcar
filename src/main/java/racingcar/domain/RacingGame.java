@@ -11,11 +11,11 @@ public class RacingGame {
     private static final int RANDOM_END = 9;
 
     private final List<RacingCar> racingCars;
-    private int tryNo;
+    private int tryNumber;
 
-    public RacingGame(String carName, int tryNo) {
+    public RacingGame(String carName, int tryNumber) {
         racingCars = setRacingCars(carName);
-        this.tryNo = tryNo;
+        this.tryNumber = tryNumber;
     }
 
     private List<RacingCar> setRacingCars(String carName) {
@@ -33,7 +33,7 @@ public class RacingGame {
             int value = RandomUtil.pickNumberInRange(RANDOM_START, RANDOM_END);
             car.move(value);
         }
-        tryNo--;
+        tryNumber--;
     }
 
     public List<String> getWinners() {
@@ -55,7 +55,7 @@ public class RacingGame {
     }
 
     public boolean isEnd() {
-        return tryNo == 0;
+        return tryNumber == 0;
     }
 }
 
