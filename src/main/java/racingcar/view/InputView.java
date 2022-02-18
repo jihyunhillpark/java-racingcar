@@ -24,7 +24,7 @@ public class InputView {
         try {
             String input = Console.readLine();
             tryNo = Integer.parseInt(input);
-        } catch ( NumberFormatException e) {
+        } catch (NumberFormatException e) {
             System.out.println("[ERROR] " + e.getMessage());
         }
         return tryNo;

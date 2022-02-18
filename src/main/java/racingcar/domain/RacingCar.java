@@ -41,6 +41,6 @@ public class RacingCar {
 
     @Override
     public String toString() {
-        return name + " : " + String.join("",Collections.nCopies(position, "-"));
+        return name + " : " + String.join("", Collections.nCopies(position, "-"));
     }
 }
