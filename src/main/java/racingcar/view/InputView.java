@@ -18,7 +18,7 @@ public class InputView {
         return input;
     }
 
-    public static int getTryNo() {
+    public static int getTryNumber() {
         System.out.println("시도할 횟수는 몇 회인가요?");
         int tryNo = 0;
         try {
