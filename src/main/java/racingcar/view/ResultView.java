@@ -1,5 +1,6 @@
 package racingcar.view;
 
+import java.util.Collections;
 import java.util.List;
 import racingcar.domain.RacingCar;
 
@@ -9,7 +10,14 @@ public class ResultView {
     }
 
     public static void printCars(List<RacingCar> cars) {
-        cars.forEach(System.out::println);
+        StringBuilder sb = new StringBuilder();
+        cars.forEach(car -> {
+            sb.append(car.getName());
+            sb.append(" : ");
+            sb.append(String.join("", Collections.nCopies(car.getPosition(), "-")));
+            sb.append("\n");
+        });
+        System.out.print(sb);
         System.out.println("------------------------------");
     }
 

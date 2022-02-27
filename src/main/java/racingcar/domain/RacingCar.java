@@ -1,7 +1,5 @@
 package racingcar.domain;
 
-import java.util.Collections;
-
 public class RacingCar {
 
     private static final int THRESHOLD = 4;
@@ -39,8 +37,4 @@ public class RacingCar {
         position++;
     }
 
-    @Override
-    public String toString() {
-        return name + " : " + String.join("", Collections.nCopies(position, "-"));
-    }
 }
