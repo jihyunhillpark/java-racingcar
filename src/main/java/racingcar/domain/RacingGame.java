@@ -36,7 +36,6 @@ public class RacingGame {
         }
     }
 
-    // TODO - 위너 구하는 로직 이동 생각
     public List<String> getWinners() {
         int maxPosition = maxPosition();
         return getWinnerNames(maxPosition);
@@ -50,7 +49,7 @@ public class RacingGame {
 
     private List<String> getWinnerNames(int maxPosition) {
         return racingCars.stream()
-            .filter(car -> car.getPosition() == maxPosition)
+            .filter(car -> car.isMaxPosition(maxPosition))
             .map(RacingCar::getName)
             .collect(Collectors.toList());
     }

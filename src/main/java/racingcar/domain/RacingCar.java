@@ -38,4 +38,9 @@ public class RacingCar {
         }
         return new RacingCar(name, ++position);
     }
+
+    public boolean isMaxPosition(int maxPosition) {
+        return position == maxPosition;
+    }
 }
+
