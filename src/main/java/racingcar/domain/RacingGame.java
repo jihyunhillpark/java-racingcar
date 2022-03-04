@@ -7,6 +7,8 @@ import java.util.stream.Collectors;
 
 public class RacingGame {
 
+    private static final String COMMA_SEPERATOR = ",";
+
     private final List<RacingCar> racingCars;
     private final int tryNumber;
 
@@ -16,7 +18,7 @@ public class RacingGame {
     }
 
     private List<RacingCar> setRacingCars(String carName) {
-        return Arrays.stream(carName.split(","))
+        return Arrays.stream(carName.split(COMMA_SEPERATOR))
             .map(RacingCar::new)
             .collect(Collectors.toList());
     }
