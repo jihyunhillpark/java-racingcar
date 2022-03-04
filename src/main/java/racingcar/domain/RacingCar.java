@@ -34,9 +34,9 @@ public class RacingCar {
 
     public RacingCar move(MoveStrategy moveStrategy) {
         if (moveStrategy.isMove()) {
-            return new RacingCar(name, position);
+            return new RacingCar(name, ++position);
         }
-        return new RacingCar(name, ++position);
+        return new RacingCar(name, position);
     }
 
     public boolean isMaxPosition(int maxPosition) {
