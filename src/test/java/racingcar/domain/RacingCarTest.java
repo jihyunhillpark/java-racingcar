@@ -1,6 +1,6 @@
 package racingcar.domain;
 
-import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
+import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.AssertionsForClassTypes.assertThatExceptionOfType;
 
 import org.junit.jupiter.api.DisplayName;
@@ -18,21 +18,21 @@ class RacingCarTest {
             .isThrownBy(() -> new RacingCar("gdgdgdgdgdg"));
     }
 
-    @ValueSource(ints = {4, 5, 6, 7, 8, 9})
+    @ValueSource(strings = {"testN", "jason", "pobi", "j"})
     @ParameterizedTest
     @DisplayName("4이상의 숫자가 나왔을 때 자동차는 1씩 전진한다")
-    void When_NumberIs4OrMore_Expect_MoveForward(int number) {
-        RacingCar car = new RacingCar("testN");
-        car.move(number);
+    void When_NumberIs4OrMore_Expect_MoveForward(String name) {
+        RacingCar car = new RacingCar(name);
+        car.move(()->true);
         assertThat(car.getPosition()).isEqualTo(1);
     }
 
-    @ValueSource(ints = {0, 1, 2, 3})
+    @ValueSource(strings = {"testN", "jason", "pobi", "j"})
     @ParameterizedTest
-    @DisplayName("4미만의 숫자가 나왔을 때 자동차는 멈춘다.")
-    void When_NumberIsLowerThan4_Expect_Stop(int number) {
-        RacingCar car = new RacingCar("testN");
-        car.move(number);
+    @DisplayName("4미만의 숫자가 나왔을 때 자동차는 움직이지 않는다.")
+    void When_NumberIsLowerThan4_Expect_Stop(String name) {
+        RacingCar car = new RacingCar(name);
+        car.move(() -> false);
         assertThat(car.getPosition()).isZero();
     }
 
