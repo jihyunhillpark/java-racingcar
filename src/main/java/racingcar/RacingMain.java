@@ -1,6 +1,7 @@
 package racingcar;
 
 import racingcar.domain.RacingGame;
+import racingcar.domain.RandomMoveStrategy;
 import racingcar.view.InputView;
 import racingcar.view.ResultView;
 
@@ -11,10 +12,8 @@ public class RacingMain {
         int tryNumber = InputView.getTryNumber();
 
         RacingGame racingGame = new RacingGame(carNames, tryNumber);
-        while (!racingGame.isEnd()) {
-            racingGame.race();
-            ResultView.printCars(racingGame.getRacingCars());
-        }
+        RandomMoveStrategy randomMoveStrategy = new RandomMoveStrategy();
+        ResultView.printCars(racingGame.race(randomMoveStrategy));
         ResultView.printWinners(racingGame.getWinners());
     }
 }
