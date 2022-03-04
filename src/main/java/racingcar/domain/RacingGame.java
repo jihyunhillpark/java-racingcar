@@ -1,17 +1,14 @@
 package racingcar.domain;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
-import racingcar.util.RandomUtil;
 
 public class RacingGame {
 
-    private static final int RANDOM_START = 0;
-    private static final int RANDOM_END = 9;
-
     private final List<RacingCar> racingCars;
-    private int tryNumber;
+    private final int tryNumber;
 
     public RacingGame(String carName, int tryNumber) {
         racingCars = setRacingCars(carName);
@@ -24,18 +21,22 @@ public class RacingGame {
             .collect(Collectors.toList());
     }
 
-    public List<RacingCar> getRacingCars() {
-        return racingCars;
-    }
-
-    public void race() {
-        for (RacingCar car : racingCars) {
-            int value = RandomUtil.pickNumberInRange(RANDOM_START, RANDOM_END);
-            car.move(value);
+    public List<RacingCar> race(MoveStrategy moveStrategy) {
+        List<RacingCar> raceHistory = new ArrayList<>();
+        for (int i = 0; i < tryNumber; i++) {
+            moveAll(raceHistory, moveStrategy);
         }
-        tryNumber--;
+        return raceHistory;
     }
 
+    private void moveAll(final List<RacingCar> raceHistory,
+        MoveStrategy moveStrategy) {
+        for (RacingCar car : racingCars) {
+            raceHistory.add(car.move(moveStrategy));
+        }
+    }
+
+    // TODO - 위너 구하는 로직 이동 생각
     public List<String> getWinners() {
         int maxPosition = maxPosition();
         return getWinnerNames(maxPosition);
@@ -52,10 +53,6 @@ public class RacingGame {
             .filter(car -> car.getPosition() == maxPosition)
             .map(RacingCar::getName)
             .collect(Collectors.toList());
-    }
-
-    public boolean isEnd() {
-        return tryNumber == 0;
     }
 }
 

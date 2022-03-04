@@ -2,15 +2,20 @@ package racingcar.domain;
 
 public class RacingCar {
 
-    private static final int THRESHOLD = 4;
+    private static final int DEFAULT_POSITION = 0;
     private static final int NAME_SIZE = 5;
 
     private final String name;
-    private int position = 0;
+    private int position;
 
     public RacingCar(String name) {
+        this(name, DEFAULT_POSITION);
+    }
+
+    private RacingCar(final String name, final int position) {
         validateNameSize(name);
         this.name = name;
+        this.position = position;
     }
 
     public String getName() {
@@ -27,14 +32,10 @@ public class RacingCar {
         }
     }
 
-    public void move(int value) {
-        if (value >= THRESHOLD) {
-            moveForward();
+    public RacingCar move(MoveStrategy moveStrategy) {
+        if (moveStrategy.isMove()) {
+            return new RacingCar(name, position);
         }
+        return new RacingCar(name, ++position);
     }
-
-    private void moveForward() {
-        position++;
-    }
-
 }
