@@ -21,8 +21,9 @@ public class ResultView {
         System.out.println(sb);
     }
 
-    public static void printWinners(List<String> winners) {
-        System.out.print("최종 우승자: " + String.join(", ", winners));
+    public static void printWinners(List<RacingCar> winners) {
+        System.out.print("최종 우승자: ");
+        winners.forEach( winner -> System.out.print(winner.getName() + ", "));
     }
 
 }
