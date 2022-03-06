@@ -18,7 +18,7 @@ public class RacingGame {
     }
 
     private List<RacingCar> setRacingCars(String carName) {
-        return Arrays.stream(carName.split(COMMA_SEPERATOR))
+        return Arrays.stream(carName.replace(" ","").split(COMMA_SEPERATOR))
             .map(RacingCar::new)
             .collect(Collectors.toList());
     }
@@ -38,9 +38,9 @@ public class RacingGame {
         }
     }
 
-    public List<String> getWinners() {
+    public List<RacingCar> getWinners() {
         int maxPosition = maxPosition();
-        return getWinnerNames(maxPosition);
+        return getWinners(maxPosition);
     }
 
     private int maxPosition() {
@@ -49,10 +49,9 @@ public class RacingGame {
             .max().orElseThrow(() -> new IllegalArgumentException("[ERROR] 최대 위치값을 찾는데 실패했습니다."));
     }
 
-    private List<String> getWinnerNames(int maxPosition) {
+    private List<RacingCar> getWinners(int maxPosition) {
         return racingCars.stream()
             .filter(car -> car.isMaxPosition(maxPosition))
-            .map(RacingCar::getName)
             .collect(Collectors.toList());
     }
 }
